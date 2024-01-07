@@ -22,7 +22,7 @@ class BWTPerlaApi:
     def __init__(self, host: str, code: str) -> None:
         self.host = host
         self.code = code
-        self.base_url = "https://" + self.host + "/"
+        self.base_url = "http://" + self.host + "/"
         self.headers = HEADERS
         self.headers["Host"] = self.host
         self.headers["Origin"] = self.base_url
@@ -40,7 +40,7 @@ class BWTPerlaApi:
         _LOGGER.debug(f"{DOMAIN} - login response {response.text}")
 
         # actualize data request
-        url = self.base_url + "home/actualizedata"
+        url = self.base_url + "api/GetCurrentData"
         response = session.post(url, headers=self.headers, verify=False)
         _LOGGER.debug(f"{DOMAIN} - actualizedata response {response.text}")
         data_response: dict = response.json()
